@@ -48,5 +48,10 @@ for f in missed_files:
 print(f">>> {len(targetable_files)}/{total} target files")
 
 for i, f in enumerate(targetable_files):
-	print(f"    {created_dates[i]}:{targetable_files[i]}")
+
+	new_name = created_dates[i].split(" ")[0].replace(":", "_")
+	new_name += "_"
+	new_name += targetable_files[i]
+
+	print(f"    {new_name}")
 
