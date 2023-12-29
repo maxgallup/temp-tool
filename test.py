@@ -5,27 +5,30 @@ import os
 incorrect_extensions_files = []
 missed_files = []
 targetable_files = []
+created_dates = []
+
 total = 0
 
 
 LABELS = ['QuickTime:MediaCreateDate']
 
+PATH = "../Home Videos/"
+
 
 def is_correct_file_extension(file_name):
-	return file_name.endswith(".MP4") or file_name.endswith(".mp4") or file_name.endswith(".mov") or file_name.endswith(".MOV")
+	return file_name.endswith(".MP4") or file_name.endswith(".mp4") or file_name.endswith(".mov") or file_name.endswith(".MOV") or file_name.endswith(".m4v") or file_name.endswith(".M4V")
 
 
 
-for file_name in os.listdir("./videos/"):
+for file_name in os.listdir(PATH):
 	total += 1
 	if is_correct_file_extension(file_name):
-		# print(file_name)
-		metadata_dict = et().get_metadata(f"videos/{file_name}")[0]
+		metadata_dict = et().get_metadata(f"{PATH}{file_name}")[0]
 
 		for label in LABELS:
 			if label in metadata_dict:
 				targetable_files.append(file_name)
-				# print(f"    >>> {label}: {metadata_dict[label]}")
+				created_dates.append(metadata_dict[label])
 			else:
 				missed_files.append(file_name)
 	else:
@@ -34,8 +37,16 @@ for file_name in os.listdir("./videos/"):
 
 
 print(f">>> {len(incorrect_extensions_files)}/{total} incorrect extensions")
+for f in incorrect_extensions_files:
+	print(f"    {f}")
+
 print(f">>> {len(missed_files)}/{total} missed files")
+for f in missed_files:
+	print(f"    {f}")
+
+
 print(f">>> {len(targetable_files)}/{total} target files")
 
-
+for i, f in enumerate(i, targetable_files):
+	print(f"    {created_dates[i]}:{targetable_files[i]}")
 
