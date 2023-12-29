@@ -47,6 +47,6 @@ for f in missed_files:
 
 print(f">>> {len(targetable_files)}/{total} target files")
 
-for i, f in enumerate(i, targetable_files):
+for i, f in enumerate(targetable_files):
 	print(f"    {created_dates[i]}:{targetable_files[i]}")
 
