@@ -53,5 +53,7 @@ for i, f in enumerate(targetable_files):
 	new_name += "_"
 	new_name += targetable_files[i]
 
-	print(f"    {new_name}")
+	
+	os.rename(f"{PATH}{targetable_files[i]}", f"{PATH}{new_name}")
+
 
